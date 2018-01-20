@@ -219,7 +219,7 @@ class ContinuousControlModel(PPOModel):
             height_size, width_size = brain.camera_resolutions[i]['height'], brain.camera_resolutions[i]['width']
             bw = brain.camera_resolutions[i]['blackAndWhite']
             encoders.append(self.create_visual_encoder(height_size, width_size, bw, h_size, 2, tf.nn.tanh, num_layers))
-        hidden_visual = tf.concat(encoders, axis=2)
+        #hidden_visual = tf.concat(encoders, axis=2)
         if brain.state_space_size > 0:
             s_size = brain.state_space_size
             if brain.state_space_type == "continuous":
