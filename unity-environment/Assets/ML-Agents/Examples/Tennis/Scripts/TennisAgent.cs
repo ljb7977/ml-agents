@@ -82,13 +82,20 @@ public class TennisAgent : Agent
                 gameObject.transform.position = new Vector3(-(invertMult) * 1f + transform.parent.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             }
         }
-        Monitor.Log("reward", this.reward, MonitorType.slider, gameObject.transform);
+        
+        float dist = Mathf.Sqrt(Mathf.Pow(ball.transform.position.x - transform.position.x, 2f) + Mathf.Pow(ball.transform.position.z - transform.position.z, 2f));
+
+        Monitor.Log("reward", CumulativeReward, MonitorType.text, gameObject.transform);
+        Monitor.Log("step", stepCounter, MonitorType.text, gameObject.transform);
+        //Monitor.Log("reward", CumulativeReward, MonitorType.slider, gameObject.transform);
+        Monitor.Log("dist", dist, MonitorType.text, gameObject.transform);
         scoreText.GetComponent<Text>().text = score.ToString();
     }
 
     // to be implemented by the developer
     public override void AgentReset()
     {
+
         if (invertX)
         {
             invertMult = -1f;
