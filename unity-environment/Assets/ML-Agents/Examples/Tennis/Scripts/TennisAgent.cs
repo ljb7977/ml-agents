@@ -17,13 +17,17 @@ public class TennisAgent : Agent
         List<float> state = new List<float>();
         state.Add(invertMult * gameObject.transform.position.x);
         state.Add(gameObject.transform.position.y);
+        state.Add(gameObject.transform.position.z);
         state.Add(invertMult * gameObject.GetComponent<Rigidbody>().velocity.x);
         state.Add(gameObject.GetComponent<Rigidbody>().velocity.y);
+        state.Add(gameObject.GetComponent<Rigidbody>().velocity.z);
 
         state.Add(invertMult * ball.transform.position.x);
         state.Add(ball.transform.position.y);
+        state.Add(ball.transform.position.z);
         state.Add(invertMult * ball.GetComponent<Rigidbody>().velocity.x);
         state.Add(ball.GetComponent<Rigidbody>().velocity.y);
+        state.Add(ball.GetComponent<Rigidbody>().velocity.z);
         return state;
     }
 
@@ -33,6 +37,7 @@ public class TennisAgent : Agent
         int action = Mathf.FloorToInt(act[0]);
         float moveX = 0.0f;
         float moveY = 0.0f;
+        float moveZ = 0.0f;
         if (action == 0)
         {
             moveX = invertMult * -0.25f;
@@ -40,7 +45,7 @@ public class TennisAgent : Agent
         if (action == 1)
         {
             moveX = invertMult * 0.25f;
-        }
+        } 
         if (action == 2 && gameObject.transform.position.y + transform.parent.transform.position.y < -1.5f)
         {
             moveY = 0.5f;
@@ -51,10 +56,17 @@ public class TennisAgent : Agent
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x * 0.5f, GetComponent<Rigidbody>().velocity.y, 0f);
             moveY = 0f;
             moveX = 0f;
+        } 
+        if(action == 4)
+        {
+            moveZ = 0.25f;
+        }
+        if(action == 5)
+        {
+            moveZ = -0.25f;
         }
 
-        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(moveX * 50f, GetComponent<Rigidbody>().velocity.y, 0f);
-
+        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(moveX * 50f, GetComponent<Rigidbody>().velocity.y, moveZ*50f);
 
         if (invertX)
         {
@@ -70,7 +82,7 @@ public class TennisAgent : Agent
                 gameObject.transform.position = new Vector3(-(invertMult) * 1f + transform.parent.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             }
         }
-
+        Monitor.Log("reward", this.reward, MonitorType.slider, gameObject.transform);
         scoreText.GetComponent<Text>().text = score.ToString();
     }
 
