@@ -30,14 +30,14 @@ public class hitWall : MonoBehaviour
             {
                 if (lastAgentHit == 0)
                 {
-                    agentA.reward += -0.2f;
-                    agentB.reward += 0;
+                    agentA.reward = -0.1f;
+                    agentB.reward = 0;
                     agentB.score += 1;
                 }
                 else
                 {
-                    agentA.reward += 0;
-                    agentB.reward += -0.2f;
+                    agentA.reward = 0;
+                    agentB.reward = -0.1f;
                     agentA.score += 1;
                 }
             }
@@ -45,14 +45,14 @@ public class hitWall : MonoBehaviour
             {
                 if (lastAgentHit == 0)
                 {
-                    agentA.reward += -0.2f;
-                    agentB.reward += 0;
+                    agentA.reward = -0.1f;
+                    agentB.reward = 0;
                     agentB.score += 1;
                 }
                 else
                 {
-                    agentA.reward += 0;
-                    agentB.reward += -0.2f;
+                    agentA.reward = 0;
+                    agentB.reward = -0.1f;
                     agentA.score += 1;
                 }
             }
@@ -60,14 +60,14 @@ public class hitWall : MonoBehaviour
             {
                 if (lastAgentHit == 0) //A shot
                 {
-                    agentA.reward += -0.1f;
-                    agentB.reward += 0;
+                    agentA.reward = -0.1f;
+                    agentB.reward = 0;
                     agentB.score += 1;
                 }
                 else
                 {
-                    agentA.reward += 0;
-                    agentB.reward += -0.1f;
+                    agentA.reward = 0;
+                    agentB.reward = -0.1f;
                     agentA.score += 1;
                 }
             }
@@ -75,14 +75,14 @@ public class hitWall : MonoBehaviour
             {
                 if (lastAgentHit == 0) //A shot
                 {
-                    agentA.reward += -0.1f;
-                    agentB.reward += 0;
+                    agentA.reward = -0.1f;
+                    agentB.reward = 0;
                     agentB.score += 1;
                 }
-                else //B shot
+                else
                 {
-                    agentA.reward += 0;
-                    agentB.reward += -0.1f;
+                    agentA.reward = 0;
+                    agentB.reward = -0.1f;
                     agentA.score += 1;
                 }
             }
@@ -90,16 +90,14 @@ public class hitWall : MonoBehaviour
             {
                 if (lastAgentHit == 1)
                 {
-                    agentA.reward += -0.2f;
-                    agentA.reward -= getDistance(agentA.gameObject) * 0.01f;
-                    agentB.reward += 1f;
+                    agentA.reward = -0.1f;
+                    agentB.reward = 0.1f;
                     agentB.score += 1;
                 }
                 else
                 {
-                    agentA.reward += -0.5f;
-                    agentA.reward -= getDistance(agentA.gameObject) * 0.01f;
-                    agentB.reward += 0;
+                    agentA.reward = -0.1f;
+                    agentB.reward = 0;
                     agentB.score += 1;
                 }
             }
@@ -107,16 +105,14 @@ public class hitWall : MonoBehaviour
             {
                 if (lastAgentHit == 0)
                 {
-                    agentA.reward += 1f;
-                    agentB.reward += -0.2f;
-                    agentB.reward -= getDistance(agentB.gameObject) * 0.01f;
+                    agentA.reward = 0.1f;
+                    agentB.reward = -0.1f;
                     agentA.score += 1;
                 }
                 else
                 {
-                    agentA.reward += 0;
-                    agentB.reward += -0.5f;
-                    agentB.reward -= getDistance(agentB.gameObject) * 0.01f;
+                    agentA.reward = 0;
+                    agentB.reward = -0.1f;
                     agentA.score += 1;
                 }
             }
@@ -146,12 +142,12 @@ public class hitWall : MonoBehaviour
             {
                 if (lastAgentHit != 0)
                 {
-                    agentA.reward += 1f;
-                    agentB.reward += 0.1f;
+                    agentA.reward += 0.1f;
+                    agentB.reward += 0.05f;
                 }
                 else 
                 {
-                    agentA.reward += 1f;
+                    agentA.reward += 0.01f;
                 }
                 lastAgentHit = 0;
             }
@@ -159,12 +155,12 @@ public class hitWall : MonoBehaviour
             {
                 if (lastAgentHit != 1)
                 {
-                    agentB.reward += 1f;
-                    agentA.reward += 0.1f;
+                    agentB.reward += 0.1f;
+                    agentA.reward += 0.05f;
                 }
                 else
                 {
-                    agentB.reward += 1f;
+                    agentB.reward += 0.01f;
                 }
                 lastAgentHit = 1;
             }
