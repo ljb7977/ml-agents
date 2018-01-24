@@ -6,6 +6,7 @@ public class Ball3DAgent : Agent
 {
     [Header("Specific to Ball3D")]
     public GameObject ball;
+    public GameObject ball2;
 
     public override List<float> CollectState()
     {
@@ -15,9 +16,15 @@ public class Ball3DAgent : Agent
         state.Add((ball.transform.position.x - gameObject.transform.position.x));
         state.Add((ball.transform.position.y - gameObject.transform.position.y));
         state.Add((ball.transform.position.z - gameObject.transform.position.z));
+        state.Add((ball2.transform.position.x - gameObject.transform.position.x));
+        state.Add((ball2.transform.position.y - gameObject.transform.position.y));
+        state.Add((ball2.transform.position.z - gameObject.transform.position.z));
         state.Add(ball.transform.GetComponent<Rigidbody>().velocity.x);
         state.Add(ball.transform.GetComponent<Rigidbody>().velocity.y);
         state.Add(ball.transform.GetComponent<Rigidbody>().velocity.z);
+        state.Add(ball2.transform.GetComponent<Rigidbody>().velocity.x);
+        state.Add(ball2.transform.GetComponent<Rigidbody>().velocity.y);
+        state.Add(ball2.transform.GetComponent<Rigidbody>().velocity.z);
         return state;
     }
 
@@ -91,10 +98,15 @@ public class Ball3DAgent : Agent
         }
         if ((ball.transform.position.y - gameObject.transform.position.y) < -2f ||
             Mathf.Abs(ball.transform.position.x - gameObject.transform.position.x) > 3f ||
-            Mathf.Abs(ball.transform.position.z - gameObject.transform.position.z) > 3f)
+            Mathf.Abs(ball.transform.position.z - gameObject.transform.position.z) > 3f ||
+            (ball2.transform.position.y - gameObject.transform.position.y) < -2f ||
+            Mathf.Abs(ball2.transform.position.x - gameObject.transform.position.x) > 3f ||
+            Mathf.Abs(ball2.transform.position.z - gameObject.transform.position.z) > 3f
+            )
         {
             done = true;
             reward = -1f;
+            
         }
 
     }
@@ -107,5 +119,8 @@ public class Ball3DAgent : Agent
         gameObject.transform.Rotate(new Vector3(0, 0, 1), Random.Range(-10f, 10f));
         ball.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         ball.transform.position = new Vector3(Random.Range(-1.5f, 1.5f), 4f, Random.Range(-1.5f, 1.5f)) + gameObject.transform.position;
+
+        ball2.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        ball2.transform.position = new Vector3(Random.Range(-1.5f, 1.5f), 4f, Random.Range(-1.5f, 1.5f)) + gameObject.transform.position;
     }
 }
